@@ -9,7 +9,7 @@ class ExperiencesController < ApplicationController
     @experience = Experience.new(experience_params)
     @experience.resume = Resume.first # tu l’associes ici
     if @experience.save
-      redirect_to resume_path(Resume.first), notice: "Expérience ajoutée ✅"
+      redirect_to resume_path, notice: "Expérience ajoutée ✅"
     else
       render :new, status: :unprocessable_entity
     end
@@ -19,16 +19,15 @@ class ExperiencesController < ApplicationController
 
   def update
     if @experience.update(experience_params)
-      redirect_to resume_path(@experience.resume), notice: "Expérience mise à jour ✅"
+      redirect_to resume_path, notice: "Expérience mise à jour ✅"
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    resume = @experience.resume
     @experience.destroy
-    redirect_to resume_path(resume), notice: "Expérience supprimée 🗑️"
+    redirect_to resume_path, notice: "Expérience supprimée 🗑️"
   end
 
   private

@@ -29,7 +29,7 @@
     </div>
   <% end %>
   <div class="mt-3">
-    <%= link_to "➕ Ajouter une expérience", new_experience_path(@resume), class: "btn btn-success" %>
+    <%= link_to "➕ Ajouter une expérience", new_experience_path, class: "btn btn-success" %>
   </div>
   <!-- Formations -->
   <h2 class="mt-5 mb-3">🎓 Formations</h2>
@@ -39,8 +39,17 @@
       <p class="mb-1"><strong><%= edu.school %></strong> —
         <%= edu.start_date&.strftime("%Y") %> - <%= edu.end_date&.strftime("%Y") || "En cours" %></p>
       <p><%= edu.description %></p>
+      <div class="d-flex">
+        <%= link_to "✏️", edit_education_path(edu), class: "btn btn-warning btn-sm me-2" %>
+        <%= link_to "🗑 ", education_path(edu),
+          data: { "turbo-method": :delete, "turbo-confirm": "Supprimer cette formation ?" },
+          class: "btn btn-danger btn-sm" %>
+      </div>
     </div>
   <% end %>
+  <div class="mt-3">
+    <%= link_to "➕ Ajouter une formation", new_education_path, class: "btn btn-success" %>
+  </div>
   <!-- Compétences -->
   <h2 class="mt-5 mb-3">🛠️ Compétences</h2>
   <ul class="list-inline">

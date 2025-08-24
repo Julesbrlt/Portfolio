@@ -1,6 +1,6 @@
-<%= simple_form_for @experience do |f| %>
-  <%= f.input :title, label: "Poste" %>
-  <%= f.input :company, label: "Entreprise" %>
+<%= simple_form_for @education do |f| %>
+  <%= f.input :school, label: "École / Université" %>
+  <%= f.input :degree, label: "Diplôme / Spécialisation" %>
   <%= f.input :start_date, as: :date, label: "Date de début" %>
   <%= f.input :end_date, as: :date, label: "Date de fin (optionnel)" %>
   <%= f.input :description, as: :text, label: "Description" %>
