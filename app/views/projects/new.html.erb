@@ -1,0 +1,20 @@
+<div class="container my-5">
+  <h1 class="text-center mb-4">➕ Ajouter un projet</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-sm p-4">
+        <%= simple_form_for @project do |f| %>
+          <%= f.input :title, label: "Titre du projet", placeholder: "Ex: Mon portfolio Rails" %>
+          <%= f.input :description, as: :text, label: "Description", placeholder: "Décris brièvement ton projet…" %>
+          <%= f.input :github_url, label: "Lien GitHub", placeholder: "https://github.com/..." %>
+          <%= f.input :demo_url, label: "Lien Démo (optionnel)", placeholder: "https://monprojet.com" %>
+          <%= f.input :image_url, label: "Image (URL)", placeholder: "https://via.placeholder.com/400x200" %>
+          <div class="text-center mt-4">
+            <%= f.button :submit, "Créer le projet", class: "btn-custom" %>
+            <%= link_to "Annuler", projects_path, class: "btn-custom-outline ms-2" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

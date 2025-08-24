@@ -1,0 +1,60 @@
+<div class="container my-5">
+  <h1 class="text-center mb-4"><%= @resume.title %></h1>
+  <!-- Résumé / introduction -->
+  <% if @resume.summary.present? %>
+    <div class="card shadow-sm p-4 mb-5">
+      <p><%= simple_format(@resume.summary) %></p>
+    </div>
+  <% end %>
+  <!-- Bouton Télécharger PDF si présent -->
+  <% if @resume.pdf.attached? %>
+    <div class="text-center mb-5">
+      <%= link_to "📄 Télécharger mon CV", url_for(@resume.pdf), target: "_blank", class:'btn-custom' %>
+    </div>
+  <% end %>
+  <!-- Expériences -->
+  <h2 class="mb-3">💼 Expériences</h2>
+  <% @resume.experiences.each do |exp| %>
+    <div class="card shadow-sm p-3 mb-3">
+      <h5 class="fw-bold"><%= exp.title %></h5>
+      <p class="mb-1"><strong><%= exp.company %></strong> —
+        <%= exp.start_date&.strftime("%Y") %> - <%= exp.end_date&.strftime("%Y") || "Présent" %></p>
+      <p><%= exp.description %></p>
+    </div>
+  <% end %>
+  <!-- Formations -->
+  <h2 class="mt-5 mb-3">🎓 Formations</h2>
+  <% @resume.educations.each do |edu| %>
+    <div class="card shadow-sm p-3 mb-3">
+      <h5 class="fw-bold"><%= edu.degree %></h5>
+      <p class="mb-1"><strong><%= edu.school %></strong> —
+        <%= edu.start_date&.strftime("%Y") %> - <%= edu.end_date&.strftime("%Y") || "En cours" %></p>
+      <p><%= edu.description %></p>
+    </div>
+  <% end %>
+  <!-- Compétences -->
+  <h2 class="mt-5 mb-3">🛠️ Compétences</h2>
+  <ul class="list-inline">
+    <% @resume.skills.each do |skill| %>
+      <li class="list-inline-item badge bg-primary text-white p-2 m-1"><%= skill.name %></li>
+    <% end %>
+  </ul>
+  <!-- Langues -->
+  <h2 class="mt-5 mb-3">🌍 Langues</h2>
+  <ul>
+    <% @resume.languages.each do |lang| %>
+      <li><%= lang.name %> — <%= lang.level %></li>
+    <% end %>
+  </ul>
+  <!-- Centres d'intérêt -->
+  <h2 class="mt-5 mb-3">🎯 Centres d’intérêt</h2>
+  <ul>
+    <% @resume.interests.each do |interest| %>
+      <li><strong><%= interest.name %></strong> — <%= interest.description %></li>
+    <% end %>
+  </ul>
+  <!-- Lien admin -->
+  <div class="text-center mt-5">
+    <%= link_to "✏️ Modifier ce CV", edit_resume_path, class: "btn btn-warning" %>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+      <div class="card shadow-sm p-4">
+        <% if @project.image_url.present? %>
+          <img src="<%= @project.image_url %>" class="card-img-top mb-4 rounded" alt="<%= @project.title %>">
+        <% end %>
+        <div class="card-body">
+          <h1 class="card-title fw-bold mb-3"><%= @project.title %></h1>
+          <p class="card-text text-muted mb-4"><%= @project.description %></p>
+          <div class="mb-4">
+            <% if @project.github_url.present? %>
+              <a href="<%= @project.github_url %>" target="_blank" class="btn btn-dark me-2">
+                <i class="fa-brands fa-github"></i> Voir sur GitHub
+              </a>
+            <% end %>
+            <% if @project.demo_url.present? %>
+              <a href="<%= @project.demo_url %>" target="_blank" class="btn btn-primary">
+                <i class="fa-solid fa-up-right-from-square"></i> Voir la démo
+              </a>
+            <% end %>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-between mt-4">
+            <%= link_to "← Retour aux projets", projects_path, class: "btn btn-outline-secondary" %>
+            <div>
+              <%= link_to "Éditer", edit_project_path(@project), class: "btn btn-warning me-2" %>
+              <%= link_to "Supprimer", project_path(@project),
+                    data: { turbo_method: :delete, turbo_confirm: "Es-tu sûr de vouloir supprimer ce projet ?" },
+                    class: "btn btn-danger" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

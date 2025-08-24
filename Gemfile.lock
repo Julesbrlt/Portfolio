@@ -106,6 +106,16 @@ GEM
     drb (2.2.3)
     erb (5.0.2)
     erubi (1.13.1)
+    ffi (1.17.2-aarch64-linux-gnu)
+    ffi (1.17.2-aarch64-linux-musl)
+    ffi (1.17.2-arm-linux-gnu)
+    ffi (1.17.2-arm-linux-musl)
+    ffi (1.17.2-arm64-darwin)
+    ffi (1.17.2-x86_64-darwin)
+    ffi (1.17.2-x86_64-linux-gnu)
+    ffi (1.17.2-x86_64-linux-musl)
+    font-awesome-sass (6.7.2)
+      sassc (~> 2.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.7)
@@ -219,6 +229,8 @@ GEM
       io-console (~> 0.5)
     rexml (3.4.1)
     rubyzip (3.0.2)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     securerandom (0.4.1)
     selenium-webdriver (4.35.0)
       base64 (~> 0.2)
@@ -226,6 +238,9 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
+    simple_form (5.3.1)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     sprockets (4.2.2)
       concurrent-ruby (~> 1.0)
       logger
@@ -281,11 +296,13 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
+  font-awesome-sass (~> 6.5)
   importmap-rails
   jbuilder
   puma (>= 5.0)
   rails (~> 7.1.5, >= 7.1.5.2)
   selenium-webdriver
+  simple_form
   sprockets-rails
   sqlite3 (>= 1.4)
   stimulus-rails

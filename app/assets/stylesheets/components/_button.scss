@@ -1,0 +1,15 @@
+.btn-custom {
+  display: inline-block;
+  padding: $btn-padding-y $btn-padding-x;
+  border-radius: $btn-radius;
+  font-weight: $btn-font-weight;
+  text-decoration: none;
+  color: white;
+  background-color: $color-primary;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: darken($color-primary, 10%);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  }
+}
