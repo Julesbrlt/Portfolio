@@ -1,0 +1,12 @@
+<%= simple_form_for [@resume, @experience] do |f| %>
+  <%= f.input :title, label: "Poste" %>
+  <%= f.input :company, label: "Entreprise" %>
+  <%= f.input :start_date, as: :date, label: "Date de début" %>
+  <%= f.input :end_date, as: :date, label: "Date de fin (optionnel)" %>
+  <%= f.input :description, as: :text, label: "Description" %>
+
+  <div class="text-center mt-4">
+    <%= f.button :submit, class: "btn btn-primary" %>
+    <%= link_to "Annuler", resume_path(@resume), class: "btn btn-outline-secondary ms-2" %>
+  </div>
+<% end %>

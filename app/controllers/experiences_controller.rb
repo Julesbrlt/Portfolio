@@ -1,15 +1,15 @@
 class ExperiencesController < ApplicationController
-  before_action :set_resume
   before_action :set_experience, only: [:edit, :update, :destroy]
 
   def new
-    @experience = @resume.experiences.new
+    @experience = Experience.new
   end
 
   def create
-    @experience = @resume.experiences.new(experience_params)
+    @experience = Experience.new(experience_params)
+    @experience.resume = Resume.first # tu l’associes ici
     if @experience.save
-      redirect_to resume_path(@resume), notice: "Expérience ajoutée ✅"
+      redirect_to resume_path(Resume.first), notice: "Expérience ajoutée ✅"
     else
       render :new, status: :unprocessable_entity
     end
@@ -19,25 +19,22 @@ class ExperiencesController < ApplicationController
 
   def update
     if @experience.update(experience_params)
-      redirect_to resume_path(@resume), notice: "Expérience mise à jour ✅"
+      redirect_to resume_path(@experience.resume), notice: "Expérience mise à jour ✅"
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
+    resume = @experience.resume
     @experience.destroy
-    redirect_to resume_path(@resume), notice: "Expérience supprimée 🗑️"
+    redirect_to resume_path(resume), notice: "Expérience supprimée 🗑️"
   end
 
   private
 
-  def set_resume
-    @resume = Resume.first
-  end
-
   def set_experience
-    @experience = @resume.experiences.find(params[:id])
+    @experience = Experience.find(params[:id])
   end
 
   def experience_params

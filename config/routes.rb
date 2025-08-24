@@ -7,11 +7,11 @@ Rails.application.routes.draw do
 
   resources :projects
 
-  resource :resume, only: [:show, :edit, :update] do
-    resources :experiences, only: [:new, :create, :edit, :update, :destroy]
-    resources :educations, only: [:new, :create, :edit, :update, :destroy]
-    resources :skills, only: [:new, :create, :edit, :update, :destroy]
-    resources :languages, only: [:new, :create, :edit, :update, :destroy]
-    resources :interests, only: [:new, :create, :edit, :update, :destroy]
-  end
+  resource :resume, only: [:show, :edit, :update]
+  resources :experiences, only: [:new, :create, :edit, :update, :destroy]
+  resources :educations, only: [:new, :create, :edit, :update, :destroy]
+  resources :skills, only: [:new, :create, :edit, :update, :destroy]
+  resources :languages, only: [:new, :create, :edit, :update, :destroy]
+  resources :interests, only: [:new, :create, :edit, :update, :destroy]
+
 end
