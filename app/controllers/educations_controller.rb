@@ -1,4 +1,6 @@
 class EducationsController < ApplicationController
+  before_action :authenticate_user!, except: []
+  before_action :check_admin
   before_action :set_education, only: [:edit, :update, :destroy]
 
   def new
@@ -39,5 +41,9 @@ class EducationsController < ApplicationController
 
   def education_params
     params.require(:education).permit(:school, :degree, :start_date, :end_date, :description)
+  end
+
+  def check_admin
+    redirect_to root_path, alert: "Accès interdit 🚫" unless current_user&.admin?
   end
 end

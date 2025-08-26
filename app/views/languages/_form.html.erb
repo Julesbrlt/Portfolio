@@ -1,0 +1,9 @@
+<%= simple_form_for @language do |f| %>
+  <%= f.input :name  %>
+  <%= f.input :level %>
+
+  <div class="text-center mt-4">
+    <%= f.button :submit, class: "btn btn-primary" %>
+    <%= link_to "Annuler", resume_path, class: "btn btn-outline-secondary ms-2" %>
+  </div>
+<% end %>

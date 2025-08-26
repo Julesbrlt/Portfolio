@@ -1,0 +1,10 @@
+.interests-list .interest-item {
+  background: #fff;
+  border: 1px solid #eee;
+  transition: transform .2s, box-shadow .2s;
+}
+.interests-list .interest-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+.interests-list span { font-size: 1.5rem; }

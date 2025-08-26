@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :check_admin, except: [:index, :show]
   before_action :set_project, only: [:show, :edit, :update]
 
   def index
@@ -40,5 +42,9 @@ class ProjectsController < ApplicationController
 
   def project_params
     params.require(:project).permit(:title, :description, :github_url, :demo_url, :image_url)
+  end
+
+  def check_admin
+    redirect_to root_path, alert: "Accès interdit 🚫" unless current_user&.admin?
   end
 end

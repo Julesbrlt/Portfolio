@@ -1,4 +1,6 @@
 class ExperiencesController < ApplicationController
+  before_action :authenticate_user!, except: []
+  before_action :check_admin
   before_action :set_experience, only: [:edit, :update, :destroy]
 
   def new
@@ -38,5 +40,9 @@ class ExperiencesController < ApplicationController
 
   def experience_params
     params.require(:experience).permit(:title, :company, :start_date, :end_date, :description)
+  end
+
+  def check_admin
+    redirect_to root_path, alert: "Accès interdit 🚫" unless current_user&.admin?
   end
 end

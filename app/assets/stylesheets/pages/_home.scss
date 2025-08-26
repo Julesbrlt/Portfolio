@@ -1,58 +1,89 @@
-.hero {
-  background: linear-gradient(135deg, lighten($color-primary, 20%), $color-primary);
-  color: white;
-  min-height: 60vh;
-
-  .profile-img {
-    width: 150px;
-    height: 150px;
-    border: 4px solid white;
-  }
-
-  .intro-text {
-    max-width: 600px;
-    margin: 0 auto;
-  }
+.band-hero {
+  background: linear-gradient(180deg, #12234f 0%, #0d1e44 100%);
+  color: #fff;
+}
+.band-hero-alt {
+  background: linear-gradient(180deg, #0d1e44 0%, #0b1939 100%);
+  color: #fff;
+}
+.band-surface {
+  background: $color-surface;
 }
 
-.contact {
-  background-color: $color-secondary;
-  .social-links a {
-    color: $color-primary;
-    transition: color 0.2s;
-    &:hover {
-      color: darken($color-primary, 15%);
-    }
-  }
+/* HERO */
+.hero-avatar {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid rgba(255,255,255,.8);
+  box-shadow: 0 6px 20px rgba(0,0,0,.25);
+}
+.hero-title { font-family: 'Poppins', sans-serif; font-weight: 700; }
+.hero-subtitle { opacity: .9; }
+.hero-text { max-width: 680px; opacity: .9; }
+
+/* Boutons pills (évite le look Bootstrap par défaut) */
+.btn-pill {
+  display: inline-block;
+  padding: .65rem 1.15rem;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform .15s ease, box-shadow .15s ease, background-color .2s ease;
+  &:hover { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(0,0,0,.12); }
+}
+.btn-primary {
+  background: $color-primary; color: #fff; border: none;
+  &:hover { background: darken($color-primary, 6%); color: #fff; }
+}
+.btn-ghost {
+  background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.75);
+  &:hover { background: rgba(255,255,255,.1); color: #fff; }
 }
 
-// 🔘 Custom Buttons
-.btn-custom {
-  background-color: $color-primary;
-  color: white;
-  font-weight: 500;
-  border-radius: $btn-radius;
-  padding: $btn-padding-y $btn-padding-x;
-  transition: all 0.2s;
-
-  &:hover {
-    background-color: darken($color-primary, 10%);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    color: white;
-  }
+/* CV Preview (image floue + overlay) */
+.cv-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 240px;
+  background: $color-surface-alt;
+  box-shadow: 0 10px 28px rgba(2, 6, 23, .10);
+}
+.cv-bg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: blur(6px) brightness(.8);
+  transform: scale(1.06); // évite de voir les bords flouttés
+}
+.cv-overlay {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+  text-align: center;
+  color: $color-text;
+  h2 { font-weight: 700; color: $color-primary; }
+  p  { color: $color-text-soft; }
 }
 
-.btn-custom-outline {
-  background-color: transparent;
-  border: 2px solid $color-primary;
+/* CTA cartes */
+.card-cta {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  width: 100%;
+}
+
+/* Contacts */
+.icon-link.icon-dark {
+  background: $color-surface-alt;
   color: $color-primary;
-  font-weight: 500;
-  border-radius: $btn-radius;
-  padding: $btn-padding-y $btn-padding-x;
-  transition: all 0.2s;
-
+  border: 2px solid rgba($color-primary, .2);
   &:hover {
-    background-color: $color-primary;
-    color: white;
+    background: lighten($color-surface-alt, 5%);
+    color: darken($color-primary, 10%);
   }
 }

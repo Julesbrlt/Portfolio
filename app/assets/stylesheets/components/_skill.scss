@@ -1,0 +1,61 @@
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.skill-wrapper {
+  position: relative;
+}
+
+.skill-delete-btn {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  z-index: 2;
+  padding: 4px 6px;
+  border-radius: 50%;
+  font-size: 0.8rem;
+}
+
+.skill-card {
+  width: 140px;
+  height: 100px;
+  perspective: 1000px; // effet 3D
+}
+
+.skill-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.skill-card:hover .skill-inner {
+  transform: rotateY(180deg);
+}
+
+.skill-front, .skill-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.skill-front {
+  background: $color-primary;
+  color: white;
+}
+
+.skill-back {
+  background: $color-secondary;
+  color: #333;
+  transform: rotateY(180deg);
+}

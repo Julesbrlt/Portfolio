@@ -1,0 +1,11 @@
+<div class="container my-5">
+  <h2 class="text-center mb-4">➕ Nouveau centre d'intérêt</h2>
+  <%= simple_form_for @interest do |f| %>
+  <%= f.input :title, label: "Sport" %>
+  <%= f.input :description, label: "Compétition / loisir" %>
+  <div class="text-center mt-4">
+    <%= f.button :submit, class: "btn btn-primary" %>
+    <%= link_to "Annuler", resume_path, class: "btn btn-outline-secondary ms-2" %>
+  </div>
+<% end %>
+</div>

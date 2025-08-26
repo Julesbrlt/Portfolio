@@ -1,1 +1,61 @@
-<h1>Hey</h1>
+<div class="home">
+  <!-- HERO / ABOUT -->
+  <section class="band-hero">
+    <div class="container py-5">
+      <div class="d-flex flex-column align-items-center text-center">
+        <%# Remplace "profile.jpg" par ton image (app/assets/images/profile.jpg) %>
+        <%= image_tag "photo_cv.JPG", alt: "Photo de profil", class: "hero-avatar mb-3" %>
+        <h1 class="hero-title mb-2">Jules Baralotto</h1>
+        <p class="hero-subtitle mb-4">Développeur Web & Digital Marketing</p>
+        <p class="hero-text mb-4">
+          Diplômé d'un master 2 en marketing digital et passioné de dev depuis peu. Je conçois des apps web et suis prêt à participer à tout type de projet!
+        </p>
+        <div>
+          <%= link_to "Voir mon CV", resume_path, class: "btn-pill btn-primary me-2" %>
+          <%= link_to "Mes projets", projects_path, class: "btn-pill btn-ghost" %>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- CV PREVIEW (floutté) -->
+  <section class="band-surface">
+    <div class="container py-5">
+      <div class="cv-card">
+        <%# Remplace "cv_preview.jpg" par une capture (facultatif). L'image est flouttée. %>
+        <%= image_tag "cv_preview.png", alt: "Aperçu CV", class: "cv-bg" %>
+        <div class="cv-overlay">
+          <h2 class="mb-2">Mon CV</h2>
+          <p class="mb-3">Découvrez mon parcours, mes expériences et compétences.</p>
+          <%= link_to "Ouvrir le CV", resume_path, class: "btn-pill btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- PROJETS CTA -->
+  <section class="band-hero-alt">
+    <div class="container py-5">
+      <div class="card-cta d-flex flex-column flex-md-row align-items-center justify-content-between">
+        <div class="mb-3 mb-md-0">
+          <h2 class="mb-1">Mes projets</h2>
+          <p class="mb-0">Sélection de projets web (Rails, JS) avec code et démos.</p>
+        </div>
+        <%= link_to "Voir le portfolio", projects_path, class: "btn-pill btn-ghost" %>
+      </div>
+    </div>
+  </section>
+  <!-- CONTACTS -->
+  <section class="band-surface">
+    <div class="container py-5">
+      <div class="contact-cta text-center">
+        <h2 class="mb-3">Me contacter</h2>
+        <p class="mb-4">Ouvert aux opportunités. Écrivez-moi ou retrouvez-moi sur mes réseaux.</p>
+        <div class="d-flex justify-content-center gap-3">
+          <a href="mailto:julesdemassalia@gmail.com" class="icon-link icon-dark"><i class="fa-solid fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/jules-baralotto-0b42131a2/" target="_blank" class="icon-link icon-dark"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="https://github.com/Julesbrlt" target="_blank" class="icon-link icon-dark"><i class="fa-brands fa-github"></i></a>
+          <a href="tel:+33603731989" class="icon-link icon-dark"><i class="fa-solid fa-phone"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,149 @@
+/* === Résumé global === */
+.resume-container {
+  color: $color-text;
+}
+
+.resume-container h1 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: $color-primary;
+}
+
+.resume-container h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: $color-primary;
+  border-bottom: 2px solid rgba($color-primary, .2);
+  padding-bottom: .3rem;
+  margin-bottom: 1.5rem;
+}
+
+/* === Cartes génériques (expériences, formations) === */
+.resume-container .card {
+  border: none;
+  border-radius: 12px;
+  background: $color-surface;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.resume-container .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+}
+
+.resume-container .card h5 {
+  color: $color-text;
+  font-weight: 600;
+}
+
+.resume-container .card p {
+  color: $color-text-soft;
+  margin-bottom: .4rem;
+}
+
+/* === Bouton PDF === */
+.btn-custom {
+  @extend .btn-pill;
+  background: $color-primary;
+  color: #fff;
+  &:hover {
+    background: darken($color-primary, 7%);
+    color: #fff;
+  }
+}
+
+/* === Skills (compétences flip) === */
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+}
+
+.skill-card {
+  width: 130px;
+  height: 90px;
+  perspective: 1000px;
+}
+
+.skill-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform .6s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+.skill-card:hover .skill-inner {
+  transform: rotateY(180deg);
+}
+.skill-front, .skill-back {
+  position: absolute;
+  width: 100%; height: 100%;
+  border-radius: 12px;
+  display: flex; justify-content: center; align-items: center;
+  backface-visibility: hidden;
+  font-weight: 600;
+}
+.skill-front {
+  background: $color-primary;
+  color: #fff;
+  border-radius: 50%;
+}
+.skill-back {
+  background: $color-surface-alt;
+  color: $color-text-soft;
+  transform: rotateY(180deg);
+  font-size: .85rem;
+}
+
+/* === Langues === */
+.languages-list .language-item {
+  background: $color-surface;
+  border: 1px solid rgba(0,0,0,.06);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.languages-list .language-item:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+.languages-list strong {
+  color: $color-primary;
+}
+
+/* === Centres d'intérêt === */
+.interests-list .interest-item {
+  background: $color-surface;
+  border: 1px solid rgba(0,0,0,.06);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.interests-list .interest-item:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+.interests-list strong {
+  color: $color-primary;
+}
+
+.band-hero {
+  background: linear-gradient(180deg, #12234f 0%, #0d1e44 100%);
+  color: #fff;
+}
+.band-surface {
+  background: #EEF2F6;
+}
+.band-surface-alt {
+  background: #E6ECF3;
+}
+.hero-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: #fff;
+}
+.hero-text {
+  color: rgba(255,255,255,.85);
+  font-size: 1.1rem;
+}
+
+/* === Espacements === */
+.resume-container .mb-5 { margin-bottom: 3rem !important; }
+.resume-container .mt-5 { margin-top: 3rem !important; }

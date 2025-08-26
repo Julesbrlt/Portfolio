@@ -1,78 +1,191 @@
-<div class="container my-5">
-  <h1 class="text-center mb-4"><%= @resume.title %></h1>
-  <!-- Résumé / introduction -->
-  <% if @resume.summary.present? %>
-    <div class="card shadow-sm p-4 mb-5">
-      <p><%= simple_format(@resume.summary) %></p>
+<div class="resume-container position-relative">
+  <!-- HERO (titre + résumé) -->
+  <section class="band-hero py-5">
+    <div class="container text-center">
+      <!-- Bouton retour coin gauche (plus proche du bord + plus petit) -->
+      <div class="position-absolute" style="top: 15px; left: 15px;">
+        <%= link_to "⬅ Retour", root_path, class: "btn-pill btn-ghost btn-sm px-3 py-1" %>
+      </div>
+      <h1 class="hero-title mb-3"><%= @resume.title %></h1>
+      <% if @resume.summary.present? %>
+        <p class="hero-text mx-auto" style="max-width: 720px;"><%= simple_format(@resume.summary) %></p>
+      <% end %>
     </div>
-  <% end %>
-  <!-- Bouton Télécharger PDF si présent -->
+  </section>
+  <!-- PDF -->
   <% if @resume.pdf.attached? %>
-    <div class="text-center mb-5">
-      <%= link_to "📄 Télécharger mon CV", url_for(@resume.pdf), target: "_blank", class:'btn-custom' %>
-    </div>
+    <section class="band-surface text-center py-4">
+      <%= link_to "📄 Télécharger mon CV (English version)", url_for(@resume.pdf),
+                  target: "_blank", class: "btn-pill btn-primary" %>
+    </section>
   <% end %>
-  <!-- Expériences -->
-  <h2 class="mb-3">💼 Expériences</h2>
-  <% @resume.experiences.each do |exp| %>
-    <div class="card shadow-sm p-3 mb-3">
-      <h5 class="fw-bold"><%= exp.title %></h5>
-      <p class="mb-1"><strong><%= exp.company %></strong> —
-        <%= exp.start_date&.strftime("%Y") %> - <%= exp.end_date&.strftime("%Y") || "Présent" %></p>
-      <p><%= exp.description %></p>
-      <div class="d-flex">
-        <%= link_to "✏️", edit_experience_path(exp), class: "btn btn-warning btn-sm me-2" %>
-        <%= link_to "🗑 ", experience_path(exp),
-          data: { "turbo-method": :delete, "turbo-confirm": "Supprimer cette expérience ?" },
-          class: "btn btn-danger btn-sm" %>
+  <!-- EXPÉRIENCES (TIMELINE) -->
+  <section class="band-surface-alt py-5">
+    <div class="container">
+      <h2 class="mb-4">💼 Expériences</h2>
+      <div class="border-start border-3 border-primary ps-4">
+        <% @resume.experiences.each do |exp| %>
+          <div class="mb-4">
+            <div class="d-flex align-items-baseline">
+              <i class="fa-solid fa-circle fa-xs text-primary me-2"></i>
+              <h5 class="fw-bold mb-1"><%= exp.title %></h5>
+            </div>
+            <p class="mb-1">
+              <strong><%= exp.company %></strong> —
+              <%= exp.start_date&.strftime("%Y") %> - <%= exp.end_date&.strftime("%Y") || "Présent" %>
+            </p>
+            <p class="mb-0"><%= exp.description %></p>
+            <div class="d-flex mt-2">
+              <% if user_signed_in? && current_user.admin? %>
+                <%= link_to "✏️", edit_experience_path(exp), class: "btn me-2" %>
+                <%= link_to "🗑 ", experience_path(exp),
+                      data: { "turbo-method": :delete, "turbo-confirm": "Supprimer cette expérience ?" },
+                      class: "btn" %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="mt-3">
+        <% if user_signed_in? && current_user.admin? %>
+          <%= link_to "➕ Ajouter une expérience", new_experience_path, class: "btn btn-success" %>
+        <% end %>
       </div>
     </div>
-  <% end %>
-  <div class="mt-3">
-    <%= link_to "➕ Ajouter une expérience", new_experience_path, class: "btn btn-success" %>
-  </div>
-  <!-- Formations -->
-  <h2 class="mt-5 mb-3">🎓 Formations</h2>
-  <% @resume.educations.each do |edu| %>
-    <div class="card shadow-sm p-3 mb-3">
-      <h5 class="fw-bold"><%= edu.degree %></h5>
-      <p class="mb-1"><strong><%= edu.school %></strong> —
-        <%= edu.start_date&.strftime("%Y") %> - <%= edu.end_date&.strftime("%Y") || "En cours" %></p>
-      <p><%= edu.description %></p>
-      <div class="d-flex">
-        <%= link_to "✏️", edit_education_path(edu), class: "btn btn-warning btn-sm me-2" %>
-        <%= link_to "🗑 ", education_path(edu),
-          data: { "turbo-method": :delete, "turbo-confirm": "Supprimer cette formation ?" },
-          class: "btn btn-danger btn-sm" %>
+  </section>
+  <!-- FORMATIONS (TIMELINE) -->
+  <section class="band-surface py-5">
+    <div class="container">
+      <h2 class="mb-4">🎓 Formations</h2>
+      <div class="border-start border-3 border-primary ps-4">
+        <% @resume.educations.each do |edu| %>
+          <div class="mb-4">
+            <div class="d-flex align-items-baseline">
+              <i class="fa-solid fa-circle fa-xs text-primary me-2"></i>
+              <h5 class="fw-bold mb-1"><%= edu.degree %></h5>
+            </div>
+            <p class="mb-1">
+              <strong><%= edu.school %></strong> —
+              <%= edu.start_date&.strftime("%Y") %> - <%= edu.end_date&.strftime("%Y") || "En cours" %>
+            </p>
+            <p class="mb-0"><%= edu.description %></p>
+            <div class="d-flex mt-2">
+              <% if user_signed_in? && current_user.admin? %>
+                <%= link_to "✏️", edit_education_path(edu), class: "btn me-2" %>
+                <%= link_to "🗑 ", education_path(edu),
+                      data: { "turbo-method": :delete, "turbo-confirm": "Supprimer cette formation ?" },
+                      class: "btn" %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="mt-3">
+        <% if user_signed_in? && current_user.admin? %>
+          <%= link_to "➕ Ajouter une formation", new_education_path, class: "btn btn-success" %>
+        <% end %>
       </div>
     </div>
-  <% end %>
-  <div class="mt-3">
-    <%= link_to "➕ Ajouter une formation", new_education_path, class: "btn btn-success" %>
-  </div>
-  <!-- Compétences -->
-  <h2 class="mt-5 mb-3">🛠️ Compétences</h2>
-  <ul class="list-inline">
-    <% @resume.skills.each do |skill| %>
-      <li class="list-inline-item badge bg-primary text-white p-2 m-1"><%= skill.name %></li>
-    <% end %>
-  </ul>
-  <!-- Langues -->
-  <h2 class="mt-5 mb-3">🌍 Langues</h2>
-  <ul>
-    <% @resume.languages.each do |lang| %>
-      <li><%= lang.name %> — <%= lang.level %></li>
-    <% end %>
-  </ul>
-  <!-- Centres d'intérêt -->
-  <h2 class="mt-5 mb-3">🎯 Centres d’intérêt</h2>
-  <ul>
-    <% @resume.interests.each do |interest| %>
-      <li><strong><%= interest.name %></strong> — <%= interest.description %></li>
-    <% end %>
-  </ul>
-  <!-- Lien admin -->
-  <div class="text-center mt-5">
-    <%= link_to "✏️ Modifier ce CV", edit_resume_path, class: "btn btn-warning" %>
-  </div>
+  </section>
+  <!-- COMPÉTENCES -->
+  <section class="band-surface-alt py-5">
+    <div class="container">
+      <h2 class="mb-4">🛠️ Compétences</h2>
+      <div class="skills-container d-flex flex-wrap">
+        <% @resume.skills.each do |skill| %>
+          <div class="skill-wrapper position-relative m-2">
+            <% if user_signed_in? && current_user.admin? %>
+              <%= link_to "🗑", skill_path(skill),
+                    data: { "turbo-method": :delete, "turbo-confirm": "Supprimer cette compétence ?" },
+                    class: "btn" %>
+            <% end %>
+            <div class="skill-card">
+              <div class="skill-inner">
+                <div class="skill-front d-flex justify-content-center align-items-center">
+                  <span class="fw-bold"><%= skill.name %></span>
+                </div>
+                <div class="skill-back d-flex flex-column justify-content-center align-items-center">
+                  <p class="mb-0"><strong>Niveau :</strong> <%= skill.level %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="mt-3">
+        <% if user_signed_in? && current_user.admin? %>
+          <%= link_to "➕ Ajouter une compétence", new_skill_path, class: "btn btn-success" %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+  <!-- LANGUES -->
+  <section class="band-surface py-5">
+    <div class="container">
+      <h2 class="mb-4">🌍 Langues</h2>
+      <div class="languages-list">
+        <% @resume.languages.each do |lang| %>
+          <div class="language-item d-flex align-items-center justify-content-between p-2 mb-2 shadow-sm rounded">
+            <div class="d-flex align-items-center">
+              <% case lang.name.downcase %>
+              <% when "français" %>
+                <span class="fi fi-fr me-3"></span>
+              <% when "anglais" %>
+                <span class="fi fi-gb me-3"></span>
+              <% when "espagnol" %>
+                <span class="fi fi-es me-3"></span>
+              <% else %>
+                <span class="me-3">🌐</span>
+              <% end %>
+              <div><strong><%= lang.name %></strong> — <%= lang.level %></div>
+            </div>
+            <% if user_signed_in? && current_user.admin? %>
+              <%= link_to "✏️", edit_language_path(lang), class: "btn" %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+  <!-- CENTRES D’INTÉRÊT -->
+  <section class="band-surface-alt py-5">
+    <div class="container">
+      <h2 class="mb-4">🎯 Centres d’intérêt</h2>
+      <div class="interests-list">
+        <% @resume.interests.each do |interest| %>
+          <div class="interest-item d-flex align-items-center justify-content-between p-3 mb-2 shadow-sm rounded">
+            <div class="d-flex align-items-center">
+              <% case interest.name.to_s.downcase %>
+              <% when "sport" %>
+                <span class="me-3">⚽</span>
+              <% when "esport" %>
+                <span class="me-3">🎮</span>
+              <% else %>
+                <span class="me-3">⭐</span>
+              <% end %>
+              <div><strong><%= interest.name %></strong> — <%= interest.description %></div>
+            </div>
+            <div class="d-flex align-items-center">
+              <% if user_signed_in? && current_user.admin? %>
+                <%= link_to "🗑", interest_path(interest),
+                      data: { "turbo-method": :delete, "turbo-confirm": "Supprimer ce centre d'intérêt ?" },
+                      class: "btn" %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="mt-3">
+        <% if user_signed_in? && current_user.admin? %>
+          <%= link_to "➕ Ajouter un centre d'intérêt", new_interest_path, class: "btn btn-success" %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+  <!-- CTA FOOTER -->
+  <section class="band-hero text-center py-5">
+    <div class="container">
+      <%= link_to "📂 Voir mes projets", projects_path, class: "btn-pill btn-primary btn-lg px-4 py-3" %>
+    </div>
+  </section>
 </div>

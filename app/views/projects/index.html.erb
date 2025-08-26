@@ -28,6 +28,8 @@
     <% end %>
   </div>
   <div class="text-center mt-5">
-    <%= link_to "➕ Ajouter un projet", new_project_path, class: "btn btn-primary" %>
+    <% if user_signed_in? && current_user.admin? %>
+      <%= link_to "➕ Ajouter un projet", new_project_path, class: "btn btn-primary" %>
+    <% end %>
   </div>
 </div>

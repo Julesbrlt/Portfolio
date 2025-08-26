@@ -24,10 +24,12 @@
           <div class="d-flex justify-content-between mt-4">
             <%= link_to "← Retour aux projets", projects_path, class: "btn btn-outline-secondary" %>
             <div>
-              <%= link_to "Éditer", edit_project_path(@project), class: "btn btn-warning me-2" %>
-              <%= link_to "Supprimer", project_path(@project),
+              <% if user_signed_in? && current_user.admin? %>
+                <%= link_to "Éditer", edit_project_path(@project), class: "btn btn-warning me-2" %>
+                <%= link_to "Supprimer", project_path(@project),
                     data: { turbo_method: :delete, turbo_confirm: "Es-tu sûr de vouloir supprimer ce projet ?" },
                     class: "btn btn-danger" %>
+              <% end %>
             </div>
           </div>
         </div>
