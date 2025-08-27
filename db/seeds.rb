@@ -89,15 +89,17 @@ puts "🎓 Formations ajoutées."
 
 # === SKILLS ===
 skills = [
-  { name: "Ruby on Rails", category: "Programming", level: "Advanced" },
-  { name: "JavaScript", category: "Programming", level: "Intermediate" },
-  { name: "HTML & CSS", category: "Programming", level: "Advanced" },
-  { name: "PostgreSQL", category: "Database", level: "Intermediate" },
-  { name: "GitHub / Heroku", category: "Tools", level: "Proficient" },
-  { name: "Adobe Suite", category: "Design", level: "Intermediate" },
+  { name: "Ruby on Rails", category: "Programming", level: "Avancé" },
+  { name: "JavaScript", category: "Programming", level: "Intermédiaire" },
+  { name: "HTML & CSS", category: "Programming", level: "Avancé" },
+  { name: "PostgreSQL", category: "Database", level: "Intermédiaire" },
+  { name: "GitHub", category: "Tools", level: "Avancé" },
+  { name: "Heroku", category: "Tools", level: "Avancé" },
+  { name: "Adobe Suite", category: "Design", level: "Intermédiare" },
   { name: "Google Ads", category: "Marketing", level: "Certified" },
-  { name: "WordPress / Shopify", category: "CMS", level: "Intermediate" },
-  { name: "Excel", category: "Tools", level: "Advanced" }
+  { name: "WordPress", category: "CMS", level: "Intermédiaire" },
+  { name: "Shopify", category: "CMS", level: "Intermédiaire" },
+  { name: "Excel", category: "Tools", level: "Avancé" }
 ]
 
 skills.each { |s| resume.skills.create!(s) }

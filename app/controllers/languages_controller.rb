@@ -23,9 +23,8 @@ class LanguagesController < ApplicationController
   def language_params
     params.require(:language).permit(:name, :level)
   end
-end
 
-def check_admin
+  def check_admin
     redirect_to root_path, alert: "Accès interdit 🚫" unless current_user&.admin?
   end
 

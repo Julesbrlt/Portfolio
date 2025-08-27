@@ -8,7 +8,7 @@
       </div>
       <h1 class="hero-title mb-3"><%= @resume.title %></h1>
       <% if @resume.summary.present? %>
-        <p class="hero-text mx-auto" style="max-width: 720px;"><%= simple_format(@resume.summary) %></p>
+          <p class="hero-text mx-auto" style="max-width: 720px;"><%= simple_format(@resume.summary) %></p>
       <% end %>
     </div>
   </section>
